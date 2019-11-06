@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--设置单选框颜色-->
+    <style name="My_CheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/colorwhite</item>
+        <item name="colorControlNormal">@color/colorwhite</item>
+    </style>
+
 </resources>
