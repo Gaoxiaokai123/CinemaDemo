@@ -3,6 +3,8 @@ package com.bawei.cinemademo.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 /**
  *@describe(描述)：App
  *@data（日期）: 2019/11/5
@@ -17,5 +19,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+        Fresco.initialize(this);
     }
 }

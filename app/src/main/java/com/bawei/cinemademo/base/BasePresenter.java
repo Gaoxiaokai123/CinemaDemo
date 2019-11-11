@@ -30,14 +30,15 @@ public abstract class BasePresenter {
         final boolean netWork = HttpUtils.getInstance().isNetWork(App.context);
         IRequest iRequest = HttpUtils.getInstance().create(IRequest.class);
         getModel(iRequest,args).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                  .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Data>() {
                     @Override
                     public void accept(Data d) throws Exception {
                         if (callBackT != null) {
                             if (netWork){
                                 if (d.status.equals("0000")){
-                                    callBackT.onSuccess(d);
+                                    callBackT.onSuccess(d.result);
+                                    callBackT.onError(d);
                                 }else {
                                     callBackT.onError(d);
                                 }
@@ -49,6 +50,7 @@ public abstract class BasePresenter {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
                         if (callBackT != null) {
                             callBackT.onError(new Data(throwable.getMessage()));
                         }
@@ -56,7 +58,11 @@ public abstract class BasePresenter {
                 });
     }
 
-
     protected abstract Observable getModel(IRequest iRequest, Object... args);
 
+    public void deleteData(){
+        if (callBackT !=null){
+            callBackT = null;
+        }
+    }
 }

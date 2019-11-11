@@ -26,7 +26,8 @@ public class HttpUtils {
                 .addInterceptor(interceptor)
                 .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.17.8.100/movieApi/")
+                .baseUrl("http://mobile.bwstudent.com/movieApi/")
+//                .baseUrl("http://172.17.8.100/movieApi/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
@@ -54,7 +55,8 @@ public class HttpUtils {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo info = cm.getActiveNetworkInfo();
             if (info != null) {
-                return info.isAvailable();
+//                return info.isAvailable();
+                return info.isConnected();
             }
         }
         return false;
