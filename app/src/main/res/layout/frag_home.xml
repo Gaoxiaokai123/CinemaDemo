@@ -22,16 +22,8 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"></com.stx.xhb.xbanner.XBanner>
-
-    <!--<com.youth.banner.Banner-->
-        <!--android:id="@+id/home_banner"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="150dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginLeft="35dp"-->
-        <!--android:layout_marginRight="35dp"></com.youth.banner.Banner>-->
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"></com.stx.xhb.xbanner.XBanner>
 
 
     <RelativeLayout
@@ -50,8 +42,6 @@
             android:textColor="@android:color/white" />
 
     </RelativeLayout>
-
-
 
 
         <LinearLayout
@@ -84,6 +74,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:padding="10dp"
                     android:id="@+id/home_gegnduo1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,6 +120,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:padding="10dp"
                     android:id="@+id/home_gegnduo2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,7 +133,6 @@
                     android:textSize="14sp" />
 
             </RelativeLayout>
-
 
 
             <android.support.v7.widget.RecyclerView
@@ -175,6 +166,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:padding="10dp"
                     android:id="@+id/home_gegnduo3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,6 +186,8 @@
 
                 <ImageView
                     android:id="@+id/home_hotimg"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginTop="15dp"

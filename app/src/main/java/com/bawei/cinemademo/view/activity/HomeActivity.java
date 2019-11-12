@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.base.BaseActivity;
@@ -78,4 +80,27 @@ public class HomeActivity extends FragmentActivity {
         });
 
     }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onAppExit();
+            return true;
+        }
+        return false;
+    }
+
+    private long firstClick;
+    public void onAppExit() {
+        if (System.currentTimeMillis() - this.firstClick > 2000L) {
+            this.firstClick = System.currentTimeMillis();
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_LONG).show();
+            return;
+        }
+        finish();
+    }
+
+
+
 }

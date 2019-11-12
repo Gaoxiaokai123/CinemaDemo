@@ -64,10 +64,11 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="15dp"
-                    android:background="@mipmap/group_2"
                     app:actualImageScaleType="centerCrop"
-                    app:placeholderImage="@mipmap/xinxi"
-                    app:roundAsCircle="false" />
+                    app:placeholderImage="@drawable/attrs"
+                    app:roundAsCircle="false"
+                    app:backgroundImage="@color/blue"
+                    android:src="@drawable/attrs"/>
 
                 <TextView
                     android:id="@+id/frag_my_card_text"
@@ -239,9 +240,7 @@
                 android:textColor="@android:color/white"
                 android:drawableTop="@mipmap/group_7"/>
 
-
         </RadioGroup>
-
 
 
         <RadioGroup
@@ -249,12 +248,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
             <RadioButton
                 android:id="@+id/frag_my_radiobtn7"
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="20dp"
-                android:layout_width="70dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:button="@null"
                 android:gravity="center"

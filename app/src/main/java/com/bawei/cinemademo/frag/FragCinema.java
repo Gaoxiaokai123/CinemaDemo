@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.adapter.FragAdapter;
@@ -26,19 +27,22 @@ import butterknife.Unbinder;
 /**
  * @Auther: 高晨凯
  * @Date: 2019/11/7 17:29:45
- * @Description:  影院模块
+ * @Description: 影院模块
  */
 public class FragCinema extends BaseFragment {
 
-    @BindView(R.id.head_img)
-    ImageView headImg;
+
     @BindView(R.id.head_text)
-    ImageView headText;
+    TextView headText;
     @BindView(R.id.frag_cinema_tab)
     TabLayout fragTab;
     @BindView(R.id.frag_cinema_pager)
     ViewPager fragPager;
     Unbinder unbinder;
+    @BindView(R.id.head_dingwei)
+    ImageView headDingwei;
+    @BindView(R.id.head_suosou)
+    ImageView headSuosou;
 
     @Override
     protected int getLayoutId() {
@@ -56,7 +60,7 @@ public class FragCinema extends BaseFragment {
         frag.add(tabNearby);
         frag.add(tabSelect);
 
-        FragAdapter fragAdapter = new FragAdapter(getChildFragmentManager(),frag);
+        FragAdapter fragAdapter = new FragAdapter(getChildFragmentManager(), frag);
         fragPager.setAdapter(fragAdapter);
 
         for (int i = 0; i < 3; i++) {

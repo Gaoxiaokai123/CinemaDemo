@@ -7,13 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bawei.cinemademo.R;
-import com.bawei.cinemademo.adapter.gengduoAdapter.GengduoAdapter;
-import com.bawei.cinemademo.adapter.HotMovieListAdapter;
+import com.bawei.cinemademo.adapter.gengduoAdapter.GegnduoComingAdapter;
 import com.bawei.cinemademo.base.BaseFragment;
+import com.bawei.cinemademo.bean.ComingSoonMovieListBean;
 import com.bawei.cinemademo.bean.Data;
-import com.bawei.cinemademo.bean.HotMovieListBean;
 import com.bawei.cinemademo.model.CallBackT;
-import com.bawei.cinemademo.presenter.HotMovieListPresenter;
+import com.bawei.cinemademo.presenter.ComingSoonMovieListPresenter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
@@ -24,46 +23,41 @@ import butterknife.Unbinder;
 
 /**
  * @Auther: 高晨凯
- * @Date: 2019/11/9 19:06:29
- * @Description: <!--查询热门电影列表-->
+ * @Date: 2019/11/11 16:27:10
+ * @Description: <!--查询即将上映电影列表-->
  */
-public class TabGengduoHot extends BaseFragment {
-
-    @BindView(R.id.frag_gengduo_hot_xrecy)
-    XRecyclerView hotXrecy;
-    int page = 1;
-
+public class TabGengduoComingsoon extends BaseFragment {
+    @BindView(R.id.frag_gengduo_coming_xrecy)
+    XRecyclerView comingXrecy;
     Unbinder unbinder;
-    private HotMovieListAdapter hotMovieListAdapter;
-    private HotMovieListPresenter hotMovieListPresenter;
-    private GengduoAdapter gengduoAdapter;
+    private GegnduoComingAdapter gegnduoComingAdapter;
+    private ComingSoonMovieListPresenter comingSoonMovieListPresenter;
+    int page = 1;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.frag_gengduo_hot;
+        return R.layout.frag_gengduo_comingsoon;
     }
 
     @Override
     protected void initView() {
-        gengduoAdapter = new GengduoAdapter();
-//        hotMovieListAdapter = new HotMovieListAdapter();
-        hotMovieListPresenter = new HotMovieListPresenter(new hotrecyData());
+        gegnduoComingAdapter = new GegnduoComingAdapter();
+        comingSoonMovieListPresenter = new ComingSoonMovieListPresenter(new comingData());
         LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        hotXrecy.setLayoutManager(manager);
-        hotXrecy.setAdapter(gengduoAdapter);
+        comingXrecy.setLayoutManager(manager);
+        comingXrecy.setAdapter(gegnduoComingAdapter);
 
-        hotMovieListPresenter.getRequestData( 1, 8);
+        comingSoonMovieListPresenter.getRequestData( 1, 8);
         shuaxin();
-
 
     }
 
-    class hotrecyData implements CallBackT<List<HotMovieListBean>>{
+    class comingData implements CallBackT<List<ComingSoonMovieListBean>>{
 
         @Override
-        public void onSuccess(List<HotMovieListBean> hotMovieListBeans) {
-            gengduoAdapter.addAll(hotMovieListBeans);
-            gengduoAdapter.notifyDataSetChanged();
+        public void onSuccess(List<ComingSoonMovieListBean> comingSoonMovieListBeans) {
+            gegnduoComingAdapter.addAll(comingSoonMovieListBeans);
+            gegnduoComingAdapter.notifyDataSetChanged();
         }
 
         @Override
@@ -73,24 +67,25 @@ public class TabGengduoHot extends BaseFragment {
     }
 
     private void shuaxin() {
-        hotXrecy.setPullRefreshEnabled(true);
-        hotXrecy.setLoadingMoreEnabled(true);
-        hotXrecy.setLoadingListener(new XRecyclerView.LoadingListener() {
+        comingXrecy.setPullRefreshEnabled(true);
+        comingXrecy.setLoadingMoreEnabled(true);
+        comingXrecy.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
                 page = 1;
-                hotMovieListPresenter.getRequestData( page, 8);
-                hotXrecy.refreshComplete();
+                comingSoonMovieListPresenter.getRequestData( page, 8);
+                comingXrecy.refreshComplete();
             }
 
             @Override
             public void onLoadMore() {
                 page++;
-                hotMovieListPresenter.getRequestData( page, 8);
-                hotXrecy.loadMoreComplete();
+                comingSoonMovieListPresenter.getRequestData( page, 8);
+                comingXrecy.loadMoreComplete();
             }
         });
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

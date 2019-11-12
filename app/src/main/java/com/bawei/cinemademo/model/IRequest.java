@@ -14,11 +14,13 @@ import com.bawei.cinemademo.bean.cinemaBean.RegionBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -33,6 +35,12 @@ public interface IRequest {
     @GET("tool/v1/findNewVersion")
     Observable<Data>findNewVersion(@Header("userId") int userId, @Header("sessionId") String sessionId, @Header("ak") String ak);
 
+//    上传用户头像
+//    http://172.17.8.100/movieApi/user/v1/verify/uploadHeadPic
+    @POST("user/v1/verify/uploadHeadPic")
+    Observable<Data<Data>>uploadHeadPic(@Header("userId")String userId,@Header("sessionId")String sessionId,@Part MultipartBody.Part part);
+
+
     //注册
 //    http://172.17.8.100/movieApi/user/v2/register
     @POST("user/v2/register")
@@ -44,7 +52,7 @@ public interface IRequest {
     @POST("user/v2/sendOutEmailCode")
     @FormUrlEncoded
     Observable<Data>sendOutEmailCode(@Field("email")String email);
-
+        
     //登录
     //    http://172.17.8.100/movieApi/user/v2/login
     @POST("user/v2/login")
@@ -78,6 +86,13 @@ public interface IRequest {
     @GET("movie/v2/findHotMovieList")
     Observable<Data<List<HotMovieListBean>>> findHotMovieList(@Query("page") int page, @Query("count") int count);
 
+//   模糊查询  根据关键字查询电影信息
+    //http://172.17.8.100/movieApi/movie/v2/findMovieByKeyword
+    @GET("movie/v2/findMovieByKeyword")
+    Observable<Data<List<ReleaseMovieListBean>>>findMovieByKeyword(@Query("keyword")String keyword,@Query("page")int page,@Query("count")int count);
+
+
+
 
     /*
         影院接口
@@ -107,6 +122,8 @@ public interface IRequest {
 //    http://172.17.8.100/movieApi/cinema/v2/findCinemaByRegion
     @GET("cinema/v2/findCinemaByRegion")
     Observable<Data<List<RegionBean>>> findCinemaByRegion(@Query("regionId")int regionId);
+
+
 
 
 }

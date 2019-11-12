@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ import com.bawei.cinemademo.presenter.HotMovieListPresenter;
 import com.bawei.cinemademo.presenter.ReleaseMovieListPresenter;
 import com.bawei.cinemademo.view.activity.GengDuoActivity;
 import com.bawei.cinemademo.view.activity.RegisterActivity;
+import com.bawei.cinemademo.view.activity.SuosouActivity;
 import com.bumptech.glide.Glide;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
@@ -47,13 +50,10 @@ import butterknife.Unbinder;
  */
 public class FragHome extends BaseFragment {
 
-    @BindView(R.id.head_img)
-    ImageView headImg;
-    @BindView(R.id.head_text)
-    ImageView headText;
+
     @BindView(R.id.home_banner)
 //    com.youth.banner.Banner homeBanner;
-    XBanner homeBanner;
+            XBanner homeBanner;
     @BindView(R.id.home_img2)
     ImageView homeImg2;
     @BindView(R.id.frag_home_recy1)
@@ -80,6 +80,18 @@ public class FragHome extends BaseFragment {
     TextView homeGegnduo2;
     @BindView(R.id.home_gegnduo3)
     TextView homeGegnduo3;
+    @BindView(R.id.head_dingwei)
+    ImageView headDingwei;
+    @BindView(R.id.head_text)
+    TextView headText;
+    @BindView(R.id.head_suosou)
+    ImageView headSuosou;
+    @BindView(R.id.home_hotname)
+    TextView homeHotname;
+    @BindView(R.id.home_hotpingfen)
+    TextView homeHotpingfen;
+    @BindView(R.id.home_hotgoupiao)
+    Button homeHotgoupiao;
     private List<String> list = new ArrayList<>();
     private List<String> list2 = new ArrayList<>();
 
@@ -133,29 +145,52 @@ public class FragHome extends BaseFragment {
         homeGegnduo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), GengDuoActivity.class));
+//                startActivity(new Intent(getContext(), GengDuoActivity.class));
+//                startActivity(new Intent(getContext(), GengDuoActivity.class));
+                Intent intent = new Intent(getActivity(), GengDuoActivity.class);
+                intent.putExtra("id", 1);
+                startActivity(intent);
+                Log.e("fragmnt", "FragHome1跳转");
             }
         });
         homeGegnduo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), GengDuoActivity.class));
-            }
-        });
-        homeGegnduo3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), GengDuoActivity.class));
+//                startActivity(new Intent(getContext(), TabGengduoRelease.class));
+                Intent intent = new Intent(getActivity(), GengDuoActivity.class);
+                intent.putExtra("id", 2);
+                startActivity(intent);
+                Log.e("fragmnt", "FragHome2跳转");
             }
         });
 
+
+        homeGegnduo3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), TabGengduoComingsoon.class));
+                Intent intent = new Intent(getActivity(), GengDuoActivity.class);
+                intent.putExtra("id", 3);
+                startActivity(intent);
+                Log.e("fragmnt", "FragHome3跳转");
+            }
+
+        });
 
     }
 
-    //跳转注册页面
-    @OnClick(R.id.head_img)
-    public void register(){
+
+    //定位 跳转注册页面
+    @OnClick(R.id.head_dingwei)
+    public void register() {
         startActivity(new Intent(getContext(), RegisterActivity.class));
+    }
+
+    //所搜
+    @OnClick(R.id.head_suosou)
+    public void suosou(){
+        startActivity(new Intent(getContext(), SuosouActivity.class));
     }
 
 
@@ -173,12 +208,6 @@ public class FragHome extends BaseFragment {
 
         @Override
         public void onSuccess(final List<Banner> banners) {
-//            for (int i = 0; i < banners.size(); i++) {
-////                String imageUrl = banners.get(i).imageUrl;
-////                list.add(imageUrl);
-//////                int rank = banners.get(i).rank;
-//////                list.add(rank+"");
-////            }
 
             homeBanner.setData(banners, null);//第二个参数为提示文字资源集合
             // XBanner适配数据
@@ -196,23 +225,6 @@ public class FragHome extends BaseFragment {
             homeBanner.setPageTransformer(Transformer.Zoom);  //本页刚左移，下页就在后面
             // 设置XBanner页面切换的时间，即动画时长
             homeBanner.setPageChangeDuration(1000);
-
-//            homeBanner.setImages(list)
-//                    .isAutoPlay(true)
-//                    .setDelayTime(2000)
-//                    .setImageLoader(new ImageLoader() {
-//                        @Override
-//                        public void displayImage(Context context, Object path, ImageView imageView) {
-//                            Glide.with(context).load(path)
-//                                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
-//                                    .into(imageView);
-////                            fragHomeText.setText(list.size() +"/5");
-//                            for (int i = 0; i < list.size(); i++) {
-//                                fragHomeText.setText(i + 1 + "/5");
-//                            }
-//
-//                        }
-//                    }).start();
         }
 
         @Override
@@ -251,7 +263,6 @@ public class FragHome extends BaseFragment {
         }
     }
 
-
     //查询热门电影列表
     public class hotMovieList implements CallBackT<List<HotMovieListBean>> {
 
@@ -259,25 +270,8 @@ public class FragHome extends BaseFragment {
         public void onSuccess(List<HotMovieListBean> hotMovieListBeans) {
             hotMovieListAdapter.addAll(hotMovieListBeans);
             hotMovieListAdapter.notifyDataSetChanged();
-//            homeHotimg.
             Glide.with(App.context).load(hotMovieListBeans.get(0).horizontalImage)
                     .into(homeHotimg);
-
-//            for (int i = 0; i < hotMovieListBeans.size(); i++) {
-//                String imageUrl = hotMovieListBeans.get(i).horizontalImage;
-//                list2.add(imageUrl);
-//            }
-//            homeBanner2.setImages(list2)
-//                    .setDelayTime(2000)
-//                    .isAutoPlay(true)
-//                    .setImageLoader(new ImageLoader() {
-//                        @Override
-//                        public void displayImage(Context context, Object path, ImageView imageView) {
-//                            Glide.with(context).load(path)
-//                                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
-//                                    .into(imageView);
-//                        }
-//                    });
 
         }
 
@@ -285,6 +279,7 @@ public class FragHome extends BaseFragment {
         public void onError(Data data) {
 
         }
+
     }
 
     @Override

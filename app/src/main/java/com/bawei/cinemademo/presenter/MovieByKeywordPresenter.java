@@ -8,16 +8,16 @@ import io.reactivex.Observable;
 
 /**
  * @Auther: 高晨凯
- * @Date: 2019/11/11 15:33:44
- * @Description:  登录
+ * @Date: 2019/11/12 09:59:02
+ * @Description:  根据关键字查询电影信息
  */
-public class LoginPresenter extends BasePresenter {
-    public LoginPresenter(CallBackT callBackT) {
+public class MovieByKeywordPresenter extends BasePresenter {
+    public MovieByKeywordPresenter(CallBackT callBackT) {
         super(callBackT);
     }
 
     @Override
     protected Observable getModel(IRequest iRequest, Object... args) {
-        return iRequest.login((String)args[0],(String)args[1]);
+        return iRequest.findMovieByKeyword((String)args[0],(int)args[1],(int)args[2]);
     }
 }
