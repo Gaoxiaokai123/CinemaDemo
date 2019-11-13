@@ -16,6 +16,7 @@ import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.adapter.ComingSoonMovieListAdapter;
 import com.bawei.cinemademo.adapter.HotMovieListAdapter;
 import com.bawei.cinemademo.adapter.ReleaseMovieListAdapter;
+import com.bawei.cinemademo.adapter.TopAdapter;
 import com.bawei.cinemademo.app.App;
 import com.bawei.cinemademo.base.BaseFragment;
 import com.bawei.cinemademo.bean.Banner;
@@ -28,7 +29,9 @@ import com.bawei.cinemademo.presenter.BannerPresenter;
 import com.bawei.cinemademo.presenter.ComingSoonMovieListPresenter;
 import com.bawei.cinemademo.presenter.HotMovieListPresenter;
 import com.bawei.cinemademo.presenter.ReleaseMovieListPresenter;
+import com.bawei.cinemademo.utils.FrescoUtils;
 import com.bawei.cinemademo.view.activity.GengDuoActivity;
+import com.bawei.cinemademo.view.activity.MoiveDetailActivity;
 import com.bawei.cinemademo.view.activity.RegisterActivity;
 import com.bawei.cinemademo.view.activity.SuosouActivity;
 import com.bumptech.glide.Glide;
@@ -141,6 +144,39 @@ public class FragHome extends BaseFragment {
         fragRecy3.setAdapter(hotMovieListAdapter);
         hotMovieListPresenter.getRequestData(1, 5);
 
+        /*
+        详情页跳转
+         */
+        hotMovieListAdapter.setOnClickTopItemListener(new HotMovieListAdapter.OnClickTopItemListener() {
+            @Override
+            public void onClick(int movieId) {
+                Intent intent = new Intent(getContext(), MoiveDetailActivity.class);
+                intent.putExtra("movieId",movieId);
+                Log.e("aa", "接口传值: "+ movieId);
+                startActivity(intent);
+            }
+        });
+
+        releaseMovieListAdapter.setOnClickTopItemListener(new HotMovieListAdapter.OnClickTopItemListener() {
+            @Override
+            public void onClick(int movieId) {
+                Intent intent = new Intent(getContext(), MoiveDetailActivity.class);
+                intent.putExtra("movieId",movieId);
+                Log.e("aa", "接口传值: "+ movieId);
+                startActivity(intent);
+            }
+        });
+
+        comingSoonMovieListAdapter.setOnClickTopItemListener(new HotMovieListAdapter.OnClickTopItemListener() {
+            @Override
+            public void onClick(int movieId) {
+                Intent intent = new Intent(getContext(), MoiveDetailActivity.class);
+                intent.putExtra("movieId",movieId);
+                Log.e("aa", "接口传值: "+ movieId);
+                startActivity(intent);
+            }
+        });
+
         //点击更多跳转更多电影列表页
         homeGegnduo1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +223,7 @@ public class FragHome extends BaseFragment {
         startActivity(new Intent(getContext(), RegisterActivity.class));
     }
 
-    //所搜
+    //搜索
     @OnClick(R.id.head_suosou)
     public void suosou(){
         startActivity(new Intent(getContext(), SuosouActivity.class));
@@ -215,9 +251,9 @@ public class FragHome extends BaseFragment {
             homeBanner.setPointsIsVisible(false);
             homeBanner.setmAdapter(new XBanner.XBannerAdapter() {
                 @Override
-                public void loadBanner(XBanner banner, View view, int position) {
-                    Glide.with(App.context).load(banners.get(position).imageUrl).into((ImageView) view);
-                    fragHomeText.setText(banners.get(position).rank + "/5");
+                public void loadBanner(XBanner xBanner, Object o, View view, int i) {
+                    Glide.with(App.context).load(banners.get(i).imageUrl).into((ImageView) view);
+                    fragHomeText.setText(banners.get(i).rank + "/5");
                 }
             });
             homeBanner.setPageTransformer(Transformer.Cube);    //立体旋转
@@ -285,7 +321,10 @@ public class FragHome extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if(unbinder != null){
+            unbinder.unbind();
+        }
+
         releaseMovieListPresenter1.deleteData();
         comingSoonMovieListPresenter.deleteData();
         hotMovieListPresenter.deleteData();

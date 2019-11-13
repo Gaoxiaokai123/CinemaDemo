@@ -35,16 +35,17 @@ public class ReleaseMovieListAdapter extends RecyclerView.Adapter<ReleaseMovieLi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myHolder myHolder, int i) {
+    public void onBindViewHolder(@NonNull myHolder myHolder, final int i) {
         myHolder.name.setText(list.get(i).name+"");
         myHolder.price.setText(list.get(i).score+"分");
-//        Glide.with(myHolder.itemView.getContext()).load(list.get(i).imageUrl)
-//                .into(myHolder.img);
-//        myHolder.img.setImageBitmap(list.get(i).imageUrl);
         myHolder.img.setImageURI(list.get(i).imageUrl);
-//        SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView)findViewById(R.id.sdv_2);
-//        simpleDraweeView2.setImageURI(url);
 
+        myHolder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickTopItemListener.onClick(list.get(i).movieId);
+            }
+        });
     }
 
     @Override
@@ -60,19 +61,24 @@ public class ReleaseMovieListAdapter extends RecyclerView.Adapter<ReleaseMovieLi
         private final SimpleDraweeView img;
         private final TextView name;
         private final TextView price;
-//        private final TextView xiagnkan;
 
         public myHolder(@NonNull View itemView) {
             super(itemView);
-//            img = itemView.findViewById(R.id.frag_home_release_img);
-//            name = itemView.findViewById(R.id.frag_home_release_name);
-//            price = itemView.findViewById(R.id.frag_home_release_data);
-//            xiagnkan = itemView.findViewById(R.id.frag_home_release_xiangkan);
             img = itemView.findViewById(R.id.frag_home_release_img);
             name = itemView.findViewById(R.id.frag_home_release_name);
             price = itemView.findViewById(R.id.frag_home_release_price);
-
-
         }
+    }
+
+
+    //初始化接口
+    public HotMovieListAdapter.OnClickTopItemListener onClickTopItemListener;
+
+    public void setOnClickTopItemListener(HotMovieListAdapter.OnClickTopItemListener onClickTopItemListener) {
+        this.onClickTopItemListener = onClickTopItemListener;
+    }
+
+    public interface OnClickTopItemListener{
+        void onClick(int movieId);
     }
 }

@@ -67,7 +67,7 @@
                     app:actualImageScaleType="centerCrop"
                     app:placeholderImage="@drawable/attrs"
                     app:roundAsCircle="false"
-                    app:backgroundImage="@color/blue"
+                    app:backgroundImage="@color/movie_home_bg"
                     android:src="@drawable/attrs"/>
 
                 <TextView

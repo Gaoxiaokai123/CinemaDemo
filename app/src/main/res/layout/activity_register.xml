@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="330dp"
         android:background="@drawable/beijing"></LinearLayout>
 
     <RelativeLayout
@@ -37,7 +37,7 @@
             android:layout_below="@+id/register_name"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/edit_background"
             android:hint="请输入邮箱账号"
             android:paddingLeft="15dp"
@@ -48,7 +48,7 @@
             android:id="@+id/register_pwd"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/register_emil"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
@@ -66,7 +66,7 @@
             android:layout_below="@+id/register_pwd"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/edit_background"
             android:hint="请输入验证码"
             android:paddingLeft="15dp"
@@ -79,7 +79,7 @@
             android:layout_height="43dp"
             android:layout_below="@id/register_pwd"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="35dp"
             android:background="@drawable/btn_background"
             android:gravity="center"
@@ -88,13 +88,14 @@
         <Button
             android:id="@+id/register_login"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_below="@id/register_huoqu"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="24dp"
-            android:textColor="#999999"
+            android:textColor="#fff"
             android:textSize="10sp"
+            android:background="#666"
             tools:text="已有账号,立即登录" />
 
         <Button

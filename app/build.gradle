@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 28
@@ -15,6 +16,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.example.john.greendaodemo.gen'
+        targetGenDir 'src/main/java'
     }
 }
 
@@ -49,10 +56,8 @@ dependencies {
     //okhttp拦截器
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
 
-
     //xrecyclerview
     implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
-
 
 //glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
@@ -62,5 +67,41 @@ dependencies {
 
     //Tablayout
     implementation 'com.android.support:design:28.0.0'
+
+    //banner依赖
+    implementation 'com.youth.banner:banner:1.4.9'
+
+
+    //xbanner
+    implementation 'com.xhb:xbanner:1.3.1'
+
+    //fresco依赖大全
+    implementation 'com.facebook.fresco:fresco:0.14.1'
+    implementation 'com.facebook.fresco:animated-base-support:0.14.1'
+    implementation 'com.facebook.fresco:animated-gif:0.14.1'
+    implementation 'com.facebook.fresco:webpsupport:0.14.1'
+    implementation 'com.facebook.fresco:animated-webp:0.14.1'
+    implementation 'com.facebook.fresco:imagepipeline-okhttp3:0.14.1'
+    //    a、在 API < 14 上的机器支持 WebP 时，需要添加以下依赖
+    implementation 'com.facebook.fresco:animated-base-support:0.14.1'
+//    b、支持GIF动图，需要添加以下依赖
+
+    implementation 'com.facebook.fresco:animated-gif:0.14.1'
+//    c、支持WebP，需要添加以下依赖
+
+    implementation 'com.facebook.fresco:webpsupport:0.14.1'
+//    d、支持WebP动图，需要添加以下依赖
+
+    implementation 'com.facebook.fresco:animated-webp:0.14.1'
+//    e、网络实现层想使用okhttp3，需要添加以下依赖
+    implementation 'com.facebook.fresco:imagepipeline-okhttp3:0.14.1'
+    //image-loader依赖
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    implementation "com.facebook.fresco:imagepipeline-okhttp3:0.12.0+"
+
+    //greendao 依赖
+    implementation 'org.greenrobot:greendao:3.0.1'
+    implementation 'org.greenrobot:greendao-generator:3.0.0'
 
 }

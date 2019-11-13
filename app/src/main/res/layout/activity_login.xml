@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="330dp"
         android:background="@drawable/beijing"></LinearLayout>
 
     <RelativeLayout
@@ -37,7 +37,7 @@
             android:layout_below="@+id/login_email"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/edit_background"
             android:hint="请输入密码"
             android:paddingLeft="15dp"
@@ -51,7 +51,7 @@
             android:layout_height="43dp"
             android:layout_below="@id/login_email"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="35dp"
             android:background="@drawable/btn_background"
             android:gravity="center"
@@ -63,10 +63,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/login_wangji"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="35dp"
             android:textColor="#fff"
             android:textSize="10sp"
+            android:background="#666"
             tools:text="暂无帐号 立即注册" />
 
         <Button
@@ -75,7 +76,7 @@
             android:layout_height="40dp"
             android:layout_below="@id/login_register"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/login_denglu"
             android:gravity="center"
             android:paddingLeft="5dp"
@@ -85,7 +86,7 @@
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_below="@id/login_btn"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
@@ -119,7 +120,7 @@
         <ImageButton
             android:id="@+id/login_Wechat"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:layout_below="@id/ll"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="15dp"

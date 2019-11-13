@@ -8,16 +8,13 @@
     android:background="#1c2243"
     android:padding="12dp">
 
-    <!--<ImageView-->
-        <!--android:id="@+id/tab_recommend_item_img"-->
-        <!--android:layout_width="130dp"-->
-        <!--android:layout_height="130dp" />-->
+
     <com.facebook.drawee.view.SimpleDraweeView
         app:roundedCornerRadius="8dp"
         android:layout_gravity="center"
         android:id="@+id/tab_recommend_item_img"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         app:actualImageScaleType="centerCrop"/>
 
 

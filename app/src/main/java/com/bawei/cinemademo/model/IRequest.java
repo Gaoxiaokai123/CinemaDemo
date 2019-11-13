@@ -2,11 +2,17 @@ package com.bawei.cinemademo.model;
 
 
 import com.bawei.cinemademo.bean.Banner;
+import com.bawei.cinemademo.bean.CinemaName;
+import com.bawei.cinemademo.bean.Cinemas;
 import com.bawei.cinemademo.bean.ComingSoonMovieListBean;
 import com.bawei.cinemademo.bean.Data;
+import com.bawei.cinemademo.bean.Detail;
+import com.bawei.cinemademo.bean.HotMovie;
 import com.bawei.cinemademo.bean.HotMovieListBean;
 import com.bawei.cinemademo.bean.LoginBean;
+import com.bawei.cinemademo.bean.MBanner;
 import com.bawei.cinemademo.bean.ReleaseMovieListBean;
+import com.bawei.cinemademo.bean.Soon;
 import com.bawei.cinemademo.bean.cinemaBean.NearbyCinemasBean;
 import com.bawei.cinemademo.bean.cinemaBean.RecommendBean;
 import com.bawei.cinemademo.bean.cinemaBean.RegionBean;
@@ -52,7 +58,7 @@ public interface IRequest {
     @POST("user/v2/sendOutEmailCode")
     @FormUrlEncoded
     Observable<Data>sendOutEmailCode(@Field("email")String email);
-        
+
     //登录
     //    http://172.17.8.100/movieApi/user/v2/login
     @POST("user/v2/login")
@@ -118,10 +124,23 @@ public interface IRequest {
     @GET("tool/v2/findRegionList")
     Observable<Data<List<RegionBean>>> findRegionList();
 
-    //    根据区域查询影院
-//    http://172.17.8.100/movieApi/cinema/v2/findCinemaByRegion
+
+
+
+
+    //附近影院
+    @GET("cinema/v1/findNearbyCinemas")
+    Observable<Data<List<Cinemas>>> findNearbyCinemas(@Query("page") int page,
+                                                      @Query("count") int count);
+
+    //影院区域查询
     @GET("cinema/v2/findCinemaByRegion")
-    Observable<Data<List<RegionBean>>> findCinemaByRegion(@Query("regionId")int regionId);
+    Observable<Data<List<CinemaName>>> findCinemaByRegion(@Query("regionId") int regionId);
+
+
+    //电影详情
+    @GET("movie/v2/findMoviesDetail")
+    Observable<Data<Detail>> findMoviesDetail(@Query("movieId") int movieId);
 
 
 

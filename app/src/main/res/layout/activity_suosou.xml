@@ -23,11 +23,14 @@
         
         <EditText
             android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:id="@+id/suosou_edit"
             android:layout_alignParentRight="true"
             android:layout_width="240dp"
             android:layout_height="30dp"
-            android:hint="请输入所搜内容"
+            android:hint="请输入搜索内容"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
             android:layout_marginRight="24dp"
             android:layout_centerVertical="true"
             android:background="@drawable/suosou_background"/>
@@ -45,19 +48,34 @@
     <TextView
         android:layout_below="@+id/sousuo_null_img"
         android:id="@+id/sousuo_null_textview"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
+        android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
-        android:text="没有相关搜索结果
-     换个词试试吧"
+        android:text="没有相关搜索结果"
+        />
+
+    <TextView
+        android:layout_below="@+id/sousuo_null_img"
+        android:id="@+id/sousuo_null_textview2"
+        android:layout_marginTop="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:text="换个词试试吧"
         />
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:id="@+id/suosou_xrecy"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_width="382dp"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"

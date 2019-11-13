@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bawei.cinemademo.R;
+import com.bawei.cinemademo.adapter.HotMovieListAdapter;
 import com.bawei.cinemademo.bean.ReleaseMovieListBean;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -41,13 +42,19 @@ public class GengduoReleaseAdapter extends RecyclerView.Adapter<GengduoReleaseAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myHolder myHolder, int i) {
+    public void onBindViewHolder(@NonNull myHolder myHolder, final int i) {
         myHolder.name.setText(list.get(i).name+"");
         myHolder.daoyan.setText("导演:"+list.get(i).director);
         myHolder.pingfen.setText(list.get(i).score+"分");
         myHolder.zhuyan.setText("主演:"+list.get(i).starring);
-        Glide.with(myHolder.itemView.getContext()).load(list.get(i).imageUrl)
-                .into(myHolder.img);
+        myHolder.img.setImageURI(list.get(i).imageUrl);
+
+        myHolder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickTopItemListener.onClick(list.get(i).movieId);
+            }
+        });
 
     }
 
@@ -61,7 +68,7 @@ public class GengduoReleaseAdapter extends RecyclerView.Adapter<GengduoReleaseAd
 
     public class myHolder extends RecyclerView.ViewHolder {
 
-        private final ImageView img;
+        private final SimpleDraweeView img;
         private final TextView name;
         private final TextView daoyan;
         private final TextView zhuyan;
@@ -77,4 +84,17 @@ public class GengduoReleaseAdapter extends RecyclerView.Adapter<GengduoReleaseAd
 
         }
     }
+
+    //初始化接口
+    public HotMovieListAdapter.OnClickTopItemListener onClickTopItemListener;
+
+    public void setOnClickTopItemListener(HotMovieListAdapter.OnClickTopItemListener onClickTopItemListener) {
+        this.onClickTopItemListener = onClickTopItemListener;
+    }
+
+    public interface OnClickTopItemListener{
+        void onClick(int movieId);
+    }
+
+
 }

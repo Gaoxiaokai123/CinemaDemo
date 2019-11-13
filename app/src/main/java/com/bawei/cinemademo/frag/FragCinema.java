@@ -16,6 +16,7 @@ import com.bawei.cinemademo.base.BaseFragment;
 import com.bawei.cinemademo.frag.tab.TabNearby;
 import com.bawei.cinemademo.frag.tab.TabRecommend;
 import com.bawei.cinemademo.frag.tab.TabSelect;
+import com.bawei.cinemademo.view.frag.FragmentMy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +56,12 @@ public class FragCinema extends BaseFragment {
         TabNearby tabNearby = new TabNearby();
         TabRecommend tabRecommend = new TabRecommend();
         TabSelect tabSelect = new TabSelect();
+        FragmentMy fragmentMy = new FragmentMy();
         List<Fragment> frag = new ArrayList<>();
         frag.add(tabRecommend);
         frag.add(tabNearby);
-        frag.add(tabSelect);
+//        frag.add(tabSelect);
+        frag.add(fragmentMy);
 
         FragAdapter fragAdapter = new FragAdapter(getChildFragmentManager(), frag);
         fragPager.setAdapter(fragAdapter);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.bean.ComingSoonMovieListBean;
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,17 +39,21 @@ public class ComingSoonMovieListAdapter extends RecyclerView.Adapter<ComingSoonM
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myHolder myHolder, int i) {
+    public void onBindViewHolder(@NonNull myHolder myHolder, final int i) {
         Date date = new Date(list.get(i).releaseTime);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
         myHolder.data.setText(simpleDateFormat.format(date)+"上映");
-
         myHolder.name.setText(list.get(i).name+"");
         myHolder.xiagnkan.setText(list.get(i).wantSeeNum+"想看");
+        myHolder.img.setImageURI(list.get(i).imageUrl);
 
-        Glide.with(myHolder.itemView.getContext()).load(list.get(i).imageUrl)
-                   .into(myHolder.img);
-//        myHolder.img.setImageURI(list.get(i).imageUrl);
+        myHolder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickTopItemListener.onClick(list.get(i).movieId);
+            }
+        });
+
     }
 
     @Override
@@ -61,8 +66,8 @@ public class ComingSoonMovieListAdapter extends RecyclerView.Adapter<ComingSoonM
 
     public class myHolder extends RecyclerView.ViewHolder {
 
-//        private final SimpleDraweeView img;
-        private final ImageView img;
+        private final SimpleDraweeView img;
+//        private final ImageView img;
         private final TextView name;
         private final TextView data;
         private final TextView xiagnkan;
@@ -73,7 +78,18 @@ public class ComingSoonMovieListAdapter extends RecyclerView.Adapter<ComingSoonM
             name = itemView.findViewById(R.id.frag_home_commingsoon_name);
             data = itemView.findViewById(R.id.frag_home_commingsoon_data);
             xiagnkan = itemView.findViewById(R.id.frag_home_commingsoon_xiangkan);
-
         }
     }
+
+    //初始化接口
+    public HotMovieListAdapter.OnClickTopItemListener onClickTopItemListener;
+
+    public void setOnClickTopItemListener(HotMovieListAdapter.OnClickTopItemListener onClickTopItemListener) {
+        this.onClickTopItemListener = onClickTopItemListener;
+    }
+
+    public interface OnClickTopItemListener{
+        void onClick(int movieId);
+    }
+
 }

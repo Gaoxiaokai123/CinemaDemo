@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bawei.cinemademo.R;
 import com.bawei.cinemademo.bean.HotMovieListBean;
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +37,16 @@ public class HotMovieListAdapter extends RecyclerView.Adapter<HotMovieListAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myHolder myHolder, int i) {
+    public void onBindViewHolder(@NonNull myHolder myHolder, final int i) {
         myHolder.name.setText(list.get(i).name+"");
-        myHolder.price.setText(list.get(i).score+"");
-        Glide.with(myHolder.itemView.getContext()).load(list.get(i).imageUrl)
-                .into(myHolder.img);
-//        myHolder.img.setImageURI(list.get(i).imageUrl);
+        myHolder.price.setText(list.get(i).score+"分");
+        myHolder.img.setImageURI(list.get(i).imageUrl);
+        myHolder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickTopItemListener.onClick(list.get(i).movieId);
+            }
+        });
     }
 
     @Override
@@ -54,8 +59,7 @@ public class HotMovieListAdapter extends RecyclerView.Adapter<HotMovieListAdapte
 
     public class myHolder extends RecyclerView.ViewHolder {
 //
-//        private final SimpleDraweeView img;
-        private final ImageView img;
+        private final SimpleDraweeView img;
         private final TextView name;
         private final TextView price;
 
@@ -65,5 +69,16 @@ public class HotMovieListAdapter extends RecyclerView.Adapter<HotMovieListAdapte
             name = itemView.findViewById(R.id.frag_home_hot_name);
             price = itemView.findViewById(R.id.frag_home_hot_price);
         }
+    }
+
+    //初始化接口
+    public OnClickTopItemListener onClickTopItemListener;
+
+    public void setOnClickTopItemListener(OnClickTopItemListener onClickTopItemListener) {
+        this.onClickTopItemListener = onClickTopItemListener;
+    }
+
+    public interface OnClickTopItemListener{
+        void onClick(int movieId);
     }
 }
